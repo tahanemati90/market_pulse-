@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{% if lang == 'fa' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Market Pulse{% endblock %}</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: {% if lang == 'fa' %}'Vazirmatn', sans-serif{% else %}'JetBrains Mono', monospace, sans-serif{% endif %};
+        }
+        .font-num {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <a href="/?lang={{ lang }}" class="flex items-center gap-3">
+                <span class="text-2xl">⚡</span>
+                <span class="text-xl font-black tracking-tight text-white">Market Pulse</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="/?lang={{ lang }}" class="hover:text-emerald-400 transition-colors">
+                    {% if lang == 'fa' %}داشبورد قیمت‌ها{% else %}Dashboard{% endif %}
+                </a>
+                <a href="/about/?lang={{ lang }}" class="hover:text-emerald-400 transition-colors">
+                    {% if lang == 'fa' %}درباره ما{% else %}About Us{% endif %}
+                </a>
+                <a href="/contact/?lang={{ lang }}" class="hover:text-emerald-400 transition-colors">
+                    {% if lang == 'fa' %}تماس با ما{% else %}Contact{% endif %}
+                </a>
+            </nav>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center gap-2 bg-slate-800/60 p-1 rounded-xl border border-slate-700/50 text-xs">
+                <a href="?lang=fa{% if selected_asset %}&asset={{ selected_asset.symbol }}{% endif %}{% if selected_currency %}&currency={{ selected_currency }}{% endif %}" 
+                   class="px-2.5 py-1 rounded-lg transition-all {% if lang == 'fa' %}bg-emerald-500 text-slate-950 font-bold{% else %}text-slate-400 hover:text-white{% endif %}">
+                   فارسی
+                </a>
+                <a href="?lang=en{% if selected_asset %}&asset={{ selected_asset.symbol }}{% endif %}{% if selected_currency %}&currency={{ selected_currency }}{% endif %}" 
+                   class="px-2.5 py-1 rounded-lg transition-all {% if lang == 'en' %}bg-emerald-500 text-slate-950 font-bold{% else %}text-slate-400 hover:text-white{% endif %}">
+                   EN
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Block -->
+    <main class="max-w-6xl mx-auto w-full px-6 py-8 flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
+        <p>Market Pulse &copy; 2026 — {% if lang == 'fa' %}توسعه داده شده با پایتون و جنگو توسط طاها{% else %}Built with Python & Django by Taha{% endif %}</p>
+    </footer>
+
+</body>
+</html>

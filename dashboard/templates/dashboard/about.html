@@ -1,0 +1,100 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+    {% if lang == 'fa' %}درباره ما | مارکت پالس{% else %}About Us | Market Pulse{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-8 space-y-6 shadow-xl">
+    <div class="border-b border-slate-800 pb-4">
+        <h1 class="text-2xl font-black text-white">
+            {% if lang == 'fa' %}درباره مارکت پالس (Market Pulse){% else %}About Market Pulse{% endif %}
+        </h1>
+        <p class="text-sm text-slate-400 mt-1">
+            {% if lang == 'fa' %}سامانه هوشمند تحلیل و پایش لحظه‌ای بازارهای مالی جهانی{% else %}Real-time global asset monitoring & conversion platform{% endif %}
+        </p>
+    </div>
+
+    <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+        {% if lang == 'fa' %}
+            <p>
+                مارکت پالس یک پلتفرم متن‌باز و مدرن توسعه داده شده با فریم‌ورک قدرتمند <strong>جنگو (Django)</strong> و زبان برنامه‌نویسی <strong>پایتون</strong> است که با هدف یکپارچه‌سازی و مانیتورینگ قیمت لحظه‌ای دارایی‌های کریپتو، کالایی و ارزهای فیات طراحی شده است.
+            </p>
+            <p>
+                این پروژه امکان تبدیل نرخ‌های جهانی را به ارزهای مختلف نظیر ریال، دلار، یورو و پوند با نمودارهای تعاملی زنده و رابط کاربری دارک به کاربران ارائه می‌دهد.
+            </p>
+        {% else %}
+            <p>
+                <strong>فایل جدید `dashboard/templates/dashboard/about.html` رو بساز:
+```html
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+{% if lang == 'fa' %}درباره ما | مارکت پالس{% else %}About Us | Market Pulse{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-8 space-y-6 shadow-xl">
+<div class="border-b border-slate-800 pb-4">
+<h1 class="text-2xl font-black text-white">
+{% if lang == 'fa' %}درباره مارکت پالس (Market Pulse){% else %}About Market Pulse{% endif %}
+</h1>
+<p class="text-sm text-slate-400 mt-1">
+{% if lang == 'fa' %}سامانه هوشمند تحلیل و پایش لحظه‌ای بازارهای مالی جهانی{% else %}Real-time global asset monitoring & conversion platform{% endif %}
+</p>
+</div>
+
+<div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+{% if lang == 'fa' %}
+<p>
+مارکت پالس یک پلتفرم متن‌باز و مدرن توسعه داده شده با فریم‌ورک قدرتمند <strong>جنگو (Django)</strong> و زبان برنامه‌نویسی <strong>پایتون</strong> است که با هدف یکپارچه‌سازی و مانیتورینگ قیمت لحظه‌ای دارایی‌های کریپتو، کالایی و ارزهای فیات طراحی شده است.
+</p>
+<p>
+این پروژه امکان تبدیل نرخ‌های جهانی را به ارزهای مختلف نظیر ریال، دلار، یورو و پوند با نمودارهای تعاملی زنده و رابط کاربری دارک به کاربران ارائه می‌دهد.
+</p>
+{% else %}
+<p>
+<strong>Market Pulse</strong> is an open-source analytics dashboard engineered with <strong>Python & Django</strong>. It is built to track, aggregate, and visualize high-frequency market data across cryptocurrencies, global commodities, and forex pairs.
+</p>
+<p> in messages %}
+<div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold">
+{{ msg }}
+</div>
+{% endfor %}
+{% endif %}
+
+<form method="POST" class="space-y-4 text-sm">
+{% csrf_token %}
+
+<div>
+<label class="block text-slate-400 mb-1">{% if lang == 'fa' %}نام شما{% else %}Full Name{% endif %}</label>
+<input type="text" name="name" required placeholder="{% if lang == 'fa' %}مثلاً: طاها نعمتی{% else %}e.g. John Doe{% endif %}"
+class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+</div>
+
+<div>
+<label class="block text-slate-400 mb-1">{% if lang == 'fa' %}ایمیل{% else %}Email Address{% endif %}</label>
+<input type="email" name="email" required placeholder="name@example.com"
+class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors font-num">
+</div>
+
+<div>
+<label class="block text-slate-400 mb-1">{% if lang == 'fa' %}موضوع پیام{% else %}Subject{% endif %}</label>
+<input type="text" name="subject" placeholder="{% if lang == 'fa' %}موضوع...{% else %}Subject...{% endif %}"
+class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+</div>
+
+<div>
+<label class="block text-slate-400 mb-1">{% if lang == 'fa' %}متن پیام{% else %}Message{% endif %}</label>
+<textarea name="message" rows="4" required placeholder="{% if lang == 'fa' %}پیام خود را اینجا بنویسید...{% else %}Write your message here...{% endif %}"
+class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+</div>
+
+<button type="submit" 
+class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/20">
+{% if lang == 'fa' %}ارسال پیام{% else %}Send Message{% endif %}
+</button>
+</form>
+
+</div>
+{% endblock %}
